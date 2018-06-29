@@ -24,37 +24,49 @@ describe('BlockHistoryController', () => {
 		});
 	});
 
-	it('should add new block to recentBlocks state', () => {
-		return new Promise((resolve) => {
-			const blockTracker = new BlockTracker({ provider: PROVIDER });
-			const controller = new BlockHistoryController(undefined, { blockTracker, provider: PROVIDER });
-			controller.subscribe((state) => {
-				setTimeout(() => {
-					blockTracker.emit('block', { number: 1337, transactions: [] });
-					const [block] = controller.state.recentBlocks.slice(-1);
-					expect(block.number).toEqual(1337);
+	it(
+		'should add new block to recentBlocks state',
+		() => {
+			return new Promise((resolve) => {
+				const blockTracker = new BlockTracker({ provider: PROVIDER });
+				const controller = new BlockHistoryController(undefined, { blockTracker, provider: PROVIDER });
+				controller.subscribe((state) => {
+					controller.subscribe((nestedState) => {
+						const [block] = nestedState.recentBlocks.slice(-1);
+						expect(block.number).toEqual(`0x${(TEST_BLOCK_NUMBER - 100).toString(16)}`);
+						resolve();
+					});
+					setTimeout(() => {
+						blockTracker.emit('latest', (TEST_BLOCK_NUMBER - 100).toString(16));
+					});
+				});
+				blockTracker.emit('latest', TEST_BLOCK_NUMBER.toString(16));
+			});
+		},
+		30000
+	);
+
+	it(
+		'should backfill correct blocks',
+		() => {
+			return new Promise((resolve) => {
+				const blockTracker = new BlockTracker({ provider: PROVIDER });
+				const controller = new BlockHistoryController(undefined, {
+					blockDepth: 50,
+					blockTracker,
+					provider: PROVIDER
+				});
+				controller.subscribe((state) => {
+					expect(state.recentBlocks.length).toBe(50);
+					expect(state.recentBlocks[0].number).toEqual(`0x${(TEST_BLOCK_NUMBER - 49).toString(16)}`);
+					expect(state.recentBlocks.pop()!.number).toEqual(`0x${TEST_BLOCK_NUMBER.toString(16)}`);
 					resolve();
 				});
+				blockTracker.emit('latest', TEST_BLOCK_NUMBER.toString(16));
 			});
-			blockTracker.emit('block', { number: TEST_BLOCK_NUMBER.toString(16) });
-		});
-	});
-
-	it('should backfill correct number of blocks', () => {
-		return new Promise((resolve) => {
-			const blockTracker = new BlockTracker({ provider: PROVIDER });
-			const controller = new BlockHistoryController(undefined, {
-				blockDepth: 50,
-				blockTracker,
-				provider: PROVIDER
-			});
-			controller.subscribe((state) => {
-				expect(state.recentBlocks.length).toBe(50);
-				resolve();
-			});
-			blockTracker.emit('block', { number: TEST_BLOCK_NUMBER.toString(16) });
-		});
-	});
+		},
+		30000
+	);
 
 	it('should splice recent blocks if new depth is less than old depth', () => {
 		return new Promise((resolve) => {
@@ -74,7 +86,7 @@ describe('BlockHistoryController', () => {
 				});
 			}
 			controller.subscribe(onChange);
-			blockTracker.emit('block', { number: TEST_BLOCK_NUMBER.toString(16) });
+			blockTracker.emit('latest', TEST_BLOCK_NUMBER.toString(16));
 		});
 	});
 

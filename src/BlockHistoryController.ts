@@ -88,12 +88,12 @@ export class BlockHistoryController extends BaseController<BlockHistoryState, Bl
 
 	private backfill() {
 		this.internalBlockTracker &&
-			this.internalBlockTracker.once('block', async (block: Block) => {
-				const currentBlockNumber = Number.parseInt(block.number, 16);
+			this.internalBlockTracker.once('latest', async (blockNumberHex: string) => {
+				const currentBlockNumber = Number.parseInt(blockNumberHex, 16);
 				const blocksToFetch = Math.min(currentBlockNumber, this.internalBlockDepth);
 				const blockNumbers = Array(blocksToFetch)
 					.fill(null)
-					.map((_: Block, index: number) => currentBlockNumber - 1);
+					.map((_: Block, index: number) => currentBlockNumber - index);
 				const newBlocks = await Promise.all(
 					blockNumbers.map((blockNumber: number) => this.getBlockByNumber(blockNumber))
 				);
@@ -109,9 +109,8 @@ export class BlockHistoryController extends BaseController<BlockHistoryState, Bl
 	}
 
 	private getBlockByNumber(blockNumber: number): Promise<Block> {
-		const bigBlockNumber = new BN(blockNumber);
 		return new Promise((resolve, reject) => {
-			this.ethQuery.getBlockByNumber(`0x${bigBlockNumber.toString(16)}`, true, (error: Error, block: Block) => {
+			this.ethQuery.getBlockByNumber(`0x${blockNumber.toString(16)}`, true, (error: Error, block: Block) => {
 				/* istanbul ignore next */
 				if (error) {
 					reject(error);
@@ -126,13 +125,15 @@ export class BlockHistoryController extends BaseController<BlockHistoryState, Bl
 		return { ...block, ...{ gasPrices: block.transactions.map((tx: any) => tx.gasPrice) } };
 	}
 
-	private onBlock(block: Block) {
+	private async onBlock(blockNumberHex: string) {
 		const { recentBlocks } = this.state;
-		if (!this.backfilled) {
+		const blockNumber = Number.parseInt(blockNumberHex, 16);
+		const block = await this.getBlockByNumber(blockNumber);
+		if (!block || !this.backfilled) {
 			return;
 		}
-		block = this.mapGasPrices(block);
-		recentBlocks.push(block);
+		const mappedBlock = this.mapGasPrices(block);
+		recentBlocks.push(mappedBlock);
 		while (recentBlocks.length > this.internalBlockDepth) {
 			recentBlocks.shift();
 		}
@@ -179,7 +180,7 @@ export class BlockHistoryController extends BaseController<BlockHistoryState, Bl
 	set blockTracker(blockTracker: any) {
 		this.internalBlockTracker && this.internalBlockTracker.removeAllListeners();
 		this.internalBlockTracker = blockTracker;
-		this.internalBlockTracker.on('block', this.onBlock.bind(this));
+		this.internalBlockTracker.on('latest', this.onBlock.bind(this));
 	}
 
 	/**
