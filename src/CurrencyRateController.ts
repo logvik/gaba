@@ -1,6 +1,7 @@
 import 'isomorphic-fetch';
 import BaseController, { BaseConfig, BaseState } from './BaseController';
 import { safelyExecute } from './util';
+const Mutex = require('await-semaphore').Mutex;
 
 /**
  * @type CurrencyRateConfig
@@ -42,6 +43,7 @@ export class CurrencyRateController extends BaseController<CurrencyRateConfig, C
 	private activeCurrency = '';
 	private activeNativeCurrency = '';
 	private handle?: NodeJS.Timer;
+	private mutex = new Mutex();
 
 	private getPricingURL(currentCurrency: string, nativeCurrency: string) {
 		return (
@@ -65,7 +67,7 @@ export class CurrencyRateController extends BaseController<CurrencyRateConfig, C
 		super(config, state);
 		this.defaultConfig = {
 			currentCurrency: 'usd',
-			disabled: true,
+			disabled: false,
 			interval: 180000,
 			nativeCurrency: 'eth'
 		};
@@ -76,7 +78,6 @@ export class CurrencyRateController extends BaseController<CurrencyRateConfig, C
 			nativeCurrency: this.defaultConfig.nativeCurrency
 		};
 		this.initialize();
-		this.configure({ disabled: false }, false, false);
 		this.poll();
 	}
 
@@ -86,6 +87,9 @@ export class CurrencyRateController extends BaseController<CurrencyRateConfig, C
 	 * @param currentCurrency - ISO 4217 currency code
 	 */
 	set currentCurrency(currentCurrency: string) {
+		if (this.activeCurrency === currentCurrency) {
+			return;
+		}
 		this.activeCurrency = currentCurrency;
 		safelyExecute(() => this.updateExchangeRate());
 	}
@@ -96,6 +100,9 @@ export class CurrencyRateController extends BaseController<CurrencyRateConfig, C
 	 * @param symbol - Symbol for the base asset
 	 */
 	set nativeCurrency(symbol: string) {
+		if (this.activeNativeCurrency === symbol) {
+			return;
+		}
 		this.activeNativeCurrency = symbol;
 		safelyExecute(() => this.updateExchangeRate());
 	}
@@ -141,6 +148,7 @@ export class CurrencyRateController extends BaseController<CurrencyRateConfig, C
 		if (this.disabled || !this.activeCurrency || !this.activeNativeCurrency) {
 			return;
 		}
+		const releaseLock = await this.mutex.acquire();
 		const { conversionDate, conversionRate } = await this.fetchExchangeRate(
 			this.activeCurrency,
 			this.activeNativeCurrency
@@ -151,6 +159,7 @@ export class CurrencyRateController extends BaseController<CurrencyRateConfig, C
 			currentCurrency: this.activeCurrency,
 			nativeCurrency: this.activeNativeCurrency
 		});
+		releaseLock();
 		return this.state;
 	}
 }

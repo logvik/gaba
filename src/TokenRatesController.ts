@@ -90,14 +90,13 @@ export class TokenRatesController extends BaseController<TokenRatesConfig, Token
 	constructor(config?: Partial<TokenRatesConfig>, state?: Partial<TokenRatesState>) {
 		super(config, state);
 		this.defaultConfig = {
-			disabled: true,
+			disabled: false,
 			interval: 180000,
 			nativeCurrency: 'eth',
 			tokens: []
 		};
 		this.defaultState = { contractExchangeRates: {} };
 		this.initialize();
-		this.configure({ disabled: false }, false, false);
 		this.poll();
 	}
 
