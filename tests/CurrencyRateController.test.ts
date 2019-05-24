@@ -32,9 +32,8 @@ describe('CurrencyRateController', () => {
 
 	it('should poll and update rate in the right interval', () => {
 		return new Promise((resolve) => {
-			const mock = stub(CurrencyRateController.prototype, 'fetchExchangeRate');
-			// tslint:disable-next-line: no-unused-expression
-			new CurrencyRateController({ interval: 10 });
+			const controller = new CurrencyRateController({ interval: 10 });
+			const mock = stub(controller, 'fetchExchangeRate').returns({});
 			expect(mock.called).toBe(true);
 			expect(mock.calledTwice).toBe(false);
 			setTimeout(() => {

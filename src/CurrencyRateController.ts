@@ -1,6 +1,7 @@
 import 'isomorphic-fetch';
 import BaseController, { BaseConfig, BaseState } from './BaseController';
 import { safelyExecute } from './util';
+const Mutex = require('await-semaphore').Mutex;
 
 /**
  * @type CurrencyRateConfig
@@ -42,6 +43,7 @@ export class CurrencyRateController extends BaseController<CurrencyRateConfig, C
 	private activeCurrency = '';
 	private activeNativeCurrency = '';
 	private handle?: NodeJS.Timer;
+	private mutex = new Mutex();
 
 	private getPricingURL(currentCurrency: string, nativeCurrency: string) {
 		return (
@@ -141,6 +143,9 @@ export class CurrencyRateController extends BaseController<CurrencyRateConfig, C
 		if (this.disabled || !this.activeCurrency || !this.activeNativeCurrency) {
 			return;
 		}
+		console.log('beforee');
+		const releaseLock = await this.mutex.acquire();
+		console.log('afffter');
 		const { conversionDate, conversionRate } = await this.fetchExchangeRate(
 			this.activeCurrency,
 			this.activeNativeCurrency
@@ -151,6 +156,7 @@ export class CurrencyRateController extends BaseController<CurrencyRateConfig, C
 			currentCurrency: this.activeCurrency,
 			nativeCurrency: this.activeNativeCurrency
 		});
+		releaseLock();
 		return this.state;
 	}
 }
