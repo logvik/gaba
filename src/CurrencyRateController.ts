@@ -143,9 +143,7 @@ export class CurrencyRateController extends BaseController<CurrencyRateConfig, C
 		if (this.disabled || !this.activeCurrency || !this.activeNativeCurrency) {
 			return;
 		}
-		console.log('beforee');
 		const releaseLock = await this.mutex.acquire();
-		console.log('afffter');
 		const { conversionDate, conversionRate } = await this.fetchExchangeRate(
 			this.activeCurrency,
 			this.activeNativeCurrency
