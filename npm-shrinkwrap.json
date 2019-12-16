@@ -1,6 +1,6 @@
 {
   "name": "gaba",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -907,11 +907,6 @@
       "integrity": "sha1-xnhwBYADV5AJCD9UrAq6+1wz0kI=",
       "dev": true
     },
-    "any-promise": {
-      "version": "0.1.0",
-      "resolved": "https://registry.npmjs.org/any-promise/-/any-promise-0.1.0.tgz",
-      "integrity": "sha1-gwtoCqflbzNFHUsEnzvYBESY7ic="
-    },
     "anymatch": {
       "version": "2.0.0",
       "resolved": "https://registry.npmjs.org/anymatch/-/anymatch-2.0.0.tgz",
@@ -1194,7 +1189,8 @@
     "balanced-match": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.0.tgz",
-      "integrity": "sha1-ibTRmasr7kneFk6gK4nORi1xt2c="
+      "integrity": "sha1-ibTRmasr7kneFk6gK4nORi1xt2c=",
+      "dev": true
     },
     "base": {
       "version": "0.11.2",
@@ -1309,9 +1305,9 @@
       }
     },
     "bluebird": {
-      "version": "3.5.5",
-      "resolved": "https://registry.npmjs.org/bluebird/-/bluebird-3.5.5.tgz",
-      "integrity": "sha512-5am6HnnfN+urzt4yfg7IgTbotDjIT/u8AJpEt0sIU9FtXfVeezXAPKswrG+xKUCOYAINpSdgZVDU6QFh+cuH3w=="
+      "version": "3.7.2",
+      "resolved": "https://registry.npmjs.org/bluebird/-/bluebird-3.7.2.tgz",
+      "integrity": "sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg=="
     },
     "bn.js": {
       "version": "4.11.8",
@@ -1322,6 +1318,7 @@
       "version": "1.1.11",
       "resolved": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.11.tgz",
       "integrity": "sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==",
+      "dev": true,
       "requires": {
         "balanced-match": "^1.0.0",
         "concat-map": "0.0.1"
@@ -1743,7 +1740,8 @@
     "concat-map": {
       "version": "0.0.1",
       "resolved": "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz",
-      "integrity": "sha1-2Klr13/Wjfd5OnMDajug1UBdR3s="
+      "integrity": "sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=",
+      "dev": true
     },
     "convert-source-map": {
       "version": "1.6.0",
@@ -1940,11 +1938,6 @@
       "integrity": "sha1-JJXduvbrh0q7Dhvp3yLS5aVEMmw=",
       "dev": true
     },
-    "deep-equal": {
-      "version": "1.0.1",
-      "resolved": "https://registry.npmjs.org/deep-equal/-/deep-equal-1.0.1.tgz",
-      "integrity": "sha1-9dJgKStmDghO/0zbyfCK0yR0SLU="
-    },
     "deep-is": {
       "version": "0.1.3",
       "resolved": "https://registry.npmjs.org/deep-is/-/deep-is-0.1.3.tgz",
@@ -2014,11 +2007,6 @@
           }
         }
       }
-    },
-    "defined": {
-      "version": "1.0.0",
-      "resolved": "https://registry.npmjs.org/defined/-/defined-1.0.0.tgz",
-      "integrity": "sha1-yY2bzvdWdBiOEQlpFRGZ45sfppM="
     },
     "delayed-stream": {
       "version": "1.0.0",
@@ -2246,12 +2234,12 @@
       }
     },
     "eth-hd-keyring": {
-      "version": "2.0.0",
-      "resolved": "https://registry.npmjs.org/eth-hd-keyring/-/eth-hd-keyring-2.0.0.tgz",
-      "integrity": "sha512-lTeANNPNj/j08sWU7LUQZTsx9NUJaUsiOdVxeP0UI5kke7L+Sd7zJWBmCShudEVG8PkqKLE1KJo08o430sl6rw==",
+      "version": "git+https://github.com/logvik/eth-hd-keyring.git#0a8ba3351a53e03ad7362714d71287a154f19e47",
+      "from": "git+https://github.com/logvik/eth-hd-keyring.git",
       "requires": {
         "bip39": "^2.2.0",
-        "eth-sig-util": "^2.0.1",
+        "eth-sig-util": "^2.4.4",
+        "eth-simple-keyring": "^3.5.0",
         "ethereumjs-abi": "^0.6.5",
         "ethereumjs-util": "^5.1.1",
         "ethereumjs-wallet": "^0.6.0",
@@ -2259,6 +2247,44 @@
         "xtend": "^4.0.1"
       },
       "dependencies": {
+        "eth-sig-util": {
+          "version": "2.5.2",
+          "resolved": "https://registry.npmjs.org/eth-sig-util/-/eth-sig-util-2.5.2.tgz",
+          "integrity": "sha512-xvDojS/4reXsw8Pz/+p/qcM5rVB61FOdPbEtMZ8FQ0YHnPEzPy5F8zAAaZ+zj5ud0SwRLWPfor2Cacjm7EzMIw==",
+          "requires": {
+            "buffer": "^5.2.1",
+            "elliptic": "^6.4.0",
+            "ethereumjs-abi": "0.6.5",
+            "ethereumjs-util": "^5.1.1",
+            "tweetnacl": "^1.0.0",
+            "tweetnacl-util": "^0.15.0"
+          },
+          "dependencies": {
+            "ethereumjs-abi": {
+              "version": "0.6.5",
+              "resolved": "https://registry.npmjs.org/ethereumjs-abi/-/ethereumjs-abi-0.6.5.tgz",
+              "integrity": "sha1-WmN+8Wq0NHP6cqKa2QhxQFs/UkE=",
+              "requires": {
+                "bn.js": "^4.10.0",
+                "ethereumjs-util": "^4.3.0"
+              },
+              "dependencies": {
+                "ethereumjs-util": {
+                  "version": "4.5.0",
+                  "resolved": "https://registry.npmjs.org/ethereumjs-util/-/ethereumjs-util-4.5.0.tgz",
+                  "integrity": "sha1-PpQosxfuvaPXJg2FT93alUsfG8Y=",
+                  "requires": {
+                    "bn.js": "^4.8.0",
+                    "create-hash": "^1.1.2",
+                    "keccakjs": "^0.2.0",
+                    "rlp": "^2.0.0",
+                    "secp256k1": "^3.0.1"
+                  }
+                }
+              }
+            }
+          }
+        },
         "ethereumjs-util": {
           "version": "5.2.0",
           "resolved": "https://registry.npmjs.org/ethereumjs-util/-/ethereumjs-util-5.2.0.tgz",
@@ -2302,15 +2328,58 @@
       }
     },
     "eth-json-rpc-infura": {
-      "version": "4.0.1",
-      "resolved": "https://registry.npmjs.org/eth-json-rpc-infura/-/eth-json-rpc-infura-4.0.1.tgz",
-      "integrity": "sha512-7pZfz6bKy4KO5mYVZ1dqsqaTsbo0sQUNo4C11NuTJ0BPjzNRJpQhBTNgRpK0Hpys0jJe898KYqdSWxuaWuc18A==",
+      "version": "git+https://github.com/logvik/eth-json-rpc-infura.git#cd0443a59b50c1259dfa11c4b32cb974f2267967",
+      "from": "git+https://github.com/logvik/eth-json-rpc-infura.git",
       "requires": {
         "cross-fetch": "^2.1.1",
         "eth-json-rpc-errors": "^1.0.1",
-        "eth-json-rpc-middleware": "^4.1.4",
-        "json-rpc-engine": "^5.1.3",
-        "tape": "^4.8.0"
+        "eth-json-rpc-middleware": "git+https://github.com/MetaMask/eth-json-rpc-middleware.git",
+        "json-rpc-engine": "^5.1.3"
+      },
+      "dependencies": {
+        "eth-json-rpc-middleware": {
+          "version": "git+https://github.com/MetaMask/eth-json-rpc-middleware.git#8e7f0584affe78a009fdca8089edd12b9510215d",
+          "from": "git+https://github.com/MetaMask/eth-json-rpc-middleware.git",
+          "requires": {
+            "btoa": "^1.2.1",
+            "clone": "^2.1.1",
+            "eth-json-rpc-errors": "^1.0.1",
+            "eth-query": "^2.1.2",
+            "eth-sig-util": "^1.4.2",
+            "ethereumjs-block": "^1.6.0",
+            "ethereumjs-tx": "^1.3.7",
+            "ethereumjs-util": "^5.1.2",
+            "ethereumjs-vm": "^2.6.0",
+            "fetch-ponyfill": "^4.0.0",
+            "json-rpc-engine": "^5.1.3",
+            "json-stable-stringify": "^1.0.1",
+            "pify": "^3.0.0",
+            "safe-event-emitter": "^1.0.1"
+          }
+        },
+        "eth-sig-util": {
+          "version": "1.4.2",
+          "resolved": "https://registry.npmjs.org/eth-sig-util/-/eth-sig-util-1.4.2.tgz",
+          "integrity": "sha1-jZWCAsftuq6Dlwf7pvCf8ydgYhA=",
+          "requires": {
+            "ethereumjs-abi": "git+https://github.com/ethereumjs/ethereumjs-abi.git",
+            "ethereumjs-util": "^5.1.1"
+          }
+        },
+        "ethereumjs-util": {
+          "version": "5.2.0",
+          "resolved": "https://registry.npmjs.org/ethereumjs-util/-/ethereumjs-util-5.2.0.tgz",
+          "integrity": "sha512-CJAKdI0wgMbQFLlLRtZKGcy/L6pzVRgelIZqRqNbuVFM3K9VEnyfbcvz0ncWMRNCe4kaHWjwRYQcYMucmwsnWA==",
+          "requires": {
+            "bn.js": "^4.11.0",
+            "create-hash": "^1.1.2",
+            "ethjs-util": "^0.1.3",
+            "keccak": "^1.0.2",
+            "rlp": "^2.0.0",
+            "safe-buffer": "^5.1.1",
+            "secp256k1": "^3.0.1"
+          }
+        }
       }
     },
     "eth-json-rpc-middleware": {
@@ -2384,20 +2453,18 @@
       }
     },
     "eth-keyring-controller": {
-      "version": "5.0.1",
-      "resolved": "https://registry.npmjs.org/eth-keyring-controller/-/eth-keyring-controller-5.0.1.tgz",
-      "integrity": "sha512-u87mdyQ1cOyLyaSME0XzV+qPvM+AO8MMMe+/rpvYxCYRK9KtvGTriyfF67zFcsYVaoRS5Ovc4QiQXCAZEyf3QQ==",
+      "version": "git+https://github.com/logvik/KeyringController.git#f0cec5b88e0b8955cef917bbf9bc45a0826570d0",
+      "from": "git+https://github.com/logvik/KeyringController.git",
       "requires": {
         "bip39": "^2.4.0",
         "bluebird": "^3.5.0",
         "browser-passworder": "^2.0.3",
-        "eth-hd-keyring": "^2.0.0",
+        "eth-hd-keyring": "git+https://github.com/logvik/eth-hd-keyring.git",
         "eth-sig-util": "^1.4.0",
-        "eth-simple-keyring": "^2.0.0",
+        "eth-simple-keyring": "^3.5.0",
         "ethereumjs-util": "^5.1.2",
         "loglevel": "^1.5.0",
-        "obs-store": "^4.0.3",
-        "promise-filter": "^1.1.0"
+        "obs-store": "^4.0.3"
       },
       "dependencies": {
         "eth-sig-util": {
@@ -2407,30 +2474,6 @@
           "requires": {
             "ethereumjs-abi": "git+https://github.com/ethereumjs/ethereumjs-abi.git",
             "ethereumjs-util": "^5.1.1"
-          }
-        },
-        "ethereumjs-abi": {
-          "version": "git+https://github.com/ethereumjs/ethereumjs-abi.git#1cfbb13862f90f0b391d8a699544d5fe4dfb8c7b",
-          "from": "git+https://github.com/ethereumjs/ethereumjs-abi.git",
-          "requires": {
-            "bn.js": "^4.11.8",
-            "ethereumjs-util": "^6.0.0"
-          },
-          "dependencies": {
-            "ethereumjs-util": {
-              "version": "6.1.0",
-              "resolved": "https://registry.npmjs.org/ethereumjs-util/-/ethereumjs-util-6.1.0.tgz",
-              "integrity": "sha512-URESKMFbDeJxnAxPppnk2fN6Y3BIatn9fwn76Lm8bQlt+s52TpG8dN9M66MLPuRAiAOIqL3dfwqWJf0sd0fL0Q==",
-              "requires": {
-                "bn.js": "^4.11.0",
-                "create-hash": "^1.1.2",
-                "ethjs-util": "0.1.6",
-                "keccak": "^1.0.2",
-                "rlp": "^2.0.0",
-                "safe-buffer": "^5.1.1",
-                "secp256k1": "^3.0.1"
-              }
-            }
           }
         },
         "ethereumjs-util": {
@@ -2527,11 +2570,11 @@
       }
     },
     "eth-simple-keyring": {
-      "version": "2.0.0",
-      "resolved": "https://registry.npmjs.org/eth-simple-keyring/-/eth-simple-keyring-2.0.0.tgz",
-      "integrity": "sha512-4dMbkIy2k1qotDTjWINvXG+7tBmofp0YUhlXgcG0+I3w684V46+MAHEkBtD2Y09iEeIB07RDXrezKP9WxOpynA==",
+      "version": "3.5.0",
+      "resolved": "https://registry.npmjs.org/eth-simple-keyring/-/eth-simple-keyring-3.5.0.tgz",
+      "integrity": "sha512-z9IPt9aoMWAw5Zc3Jk/HKbWPJNc7ivZ5ECNtl3ZoQUGRnwoWO71W5+liVPJtXFNacGOOGsBfqTqrXL9C4EnYYQ==",
       "requires": {
-        "eth-sig-util": "^2.0.1",
+        "eth-sig-util": "^2.5.0",
         "ethereumjs-abi": "^0.6.5",
         "ethereumjs-util": "^5.1.1",
         "ethereumjs-wallet": "^0.6.0",
@@ -2539,6 +2582,44 @@
         "xtend": "^4.0.1"
       },
       "dependencies": {
+        "eth-sig-util": {
+          "version": "2.5.2",
+          "resolved": "https://registry.npmjs.org/eth-sig-util/-/eth-sig-util-2.5.2.tgz",
+          "integrity": "sha512-xvDojS/4reXsw8Pz/+p/qcM5rVB61FOdPbEtMZ8FQ0YHnPEzPy5F8zAAaZ+zj5ud0SwRLWPfor2Cacjm7EzMIw==",
+          "requires": {
+            "buffer": "^5.2.1",
+            "elliptic": "^6.4.0",
+            "ethereumjs-abi": "0.6.5",
+            "ethereumjs-util": "^5.1.1",
+            "tweetnacl": "^1.0.0",
+            "tweetnacl-util": "^0.15.0"
+          },
+          "dependencies": {
+            "ethereumjs-abi": {
+              "version": "0.6.5",
+              "resolved": "https://registry.npmjs.org/ethereumjs-abi/-/ethereumjs-abi-0.6.5.tgz",
+              "integrity": "sha1-WmN+8Wq0NHP6cqKa2QhxQFs/UkE=",
+              "requires": {
+                "bn.js": "^4.10.0",
+                "ethereumjs-util": "^4.3.0"
+              },
+              "dependencies": {
+                "ethereumjs-util": {
+                  "version": "4.5.0",
+                  "resolved": "https://registry.npmjs.org/ethereumjs-util/-/ethereumjs-util-4.5.0.tgz",
+                  "integrity": "sha1-PpQosxfuvaPXJg2FT93alUsfG8Y=",
+                  "requires": {
+                    "bn.js": "^4.8.0",
+                    "create-hash": "^1.1.2",
+                    "keccakjs": "^0.2.0",
+                    "rlp": "^2.0.0",
+                    "secp256k1": "^3.0.1"
+                  }
+                }
+              }
+            }
+          }
+        },
         "ethereumjs-util": {
           "version": "5.2.0",
           "resolved": "https://registry.npmjs.org/ethereumjs-util/-/ethereumjs-util-5.2.0.tgz",
@@ -2571,22 +2652,6 @@
       "requires": {
         "bn.js": "^4.11.8",
         "ethereumjs-util": "^6.0.0"
-      },
-      "dependencies": {
-        "ethereumjs-util": {
-          "version": "6.1.0",
-          "resolved": "https://registry.npmjs.org/ethereumjs-util/-/ethereumjs-util-6.1.0.tgz",
-          "integrity": "sha512-URESKMFbDeJxnAxPppnk2fN6Y3BIatn9fwn76Lm8bQlt+s52TpG8dN9M66MLPuRAiAOIqL3dfwqWJf0sd0fL0Q==",
-          "requires": {
-            "bn.js": "^4.11.0",
-            "create-hash": "^1.1.2",
-            "ethjs-util": "0.1.6",
-            "keccak": "^1.0.2",
-            "rlp": "^2.0.0",
-            "safe-buffer": "^5.1.1",
-            "secp256k1": "^3.0.1"
-          }
-        }
       }
     },
     "ethereumjs-account": {
@@ -3354,7 +3419,8 @@
     "fs.realpath": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz",
-      "integrity": "sha1-FQStJSMVjKpA20onh8sBQRmU6k8="
+      "integrity": "sha1-FQStJSMVjKpA20onh8sBQRmU6k8=",
+      "dev": true
     },
     "fsevents": {
       "version": "1.2.9",
@@ -3953,6 +4019,7 @@
       "version": "7.1.4",
       "resolved": "https://registry.npmjs.org/glob/-/glob-7.1.4.tgz",
       "integrity": "sha512-hkLPepehmnKk41pUGm3sYxoFs/umurYfYJCerbXEyFIWcAzvpipAgVkBqqT9RBKMGjnq6kMuyYwha6csxbiM1A==",
+      "dev": true,
       "requires": {
         "fs.realpath": "^1.0.0",
         "inflight": "^1.0.4",
@@ -4234,6 +4301,7 @@
       "version": "1.0.6",
       "resolved": "https://registry.npmjs.org/inflight/-/inflight-1.0.6.tgz",
       "integrity": "sha1-Sb1jMdfQLQwJvJEKEHW6gWW1bfk=",
+      "dev": true,
       "requires": {
         "once": "^1.3.0",
         "wrappy": "1"
@@ -6204,9 +6272,9 @@
       }
     },
     "loglevel": {
-      "version": "1.6.3",
-      "resolved": "https://registry.npmjs.org/loglevel/-/loglevel-1.6.3.tgz",
-      "integrity": "sha512-LoEDv5pgpvWgPF4kNYuIp0qqSJVWak/dML0RY74xlzMZiT9w77teNAwKYKWBTYjlokMirg+o3jBwp+vlLrcfAA=="
+      "version": "1.6.6",
+      "resolved": "https://registry.npmjs.org/loglevel/-/loglevel-1.6.6.tgz",
+      "integrity": "sha512-Sgr5lbboAUBo3eXCSPL4/KoVz3ROKquOjcctxmHIt+vol2DrqTQe3SwkKKuYhEiWB5kYa13YyopJ69deJ1irzQ=="
     },
     "lolex": {
       "version": "4.2.0",
@@ -6434,6 +6502,7 @@
       "version": "3.0.4",
       "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-3.0.4.tgz",
       "integrity": "sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==",
+      "dev": true,
       "requires": {
         "brace-expansion": "^1.1.7"
       }
@@ -6441,7 +6510,8 @@
     "minimist": {
       "version": "1.2.0",
       "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz",
-      "integrity": "sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ="
+      "integrity": "sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=",
+      "dev": true
     },
     "mixin-deep": {
       "version": "1.3.2",
@@ -6704,11 +6774,6 @@
         }
       }
     },
-    "object-inspect": {
-      "version": "1.6.0",
-      "resolved": "https://registry.npmjs.org/object-inspect/-/object-inspect-1.6.0.tgz",
-      "integrity": "sha512-GJzfBZ6DgDAmnuaM3104jR4s1Myxr3Y3zfIyN4z3UdqN69oSRacNK8UhnobDdC+7J2AHCjGwxQubNJfE70SXXQ=="
-    },
     "object-keys": {
       "version": "0.4.0",
       "resolved": "https://registry.npmjs.org/object-keys/-/object-keys-0.4.0.tgz",
@@ -6757,6 +6822,7 @@
       "version": "1.4.0",
       "resolved": "https://registry.npmjs.org/once/-/once-1.4.0.tgz",
       "integrity": "sha1-WDsap3WWHUsROsF9nFC6753Xa9E=",
+      "dev": true,
       "requires": {
         "wrappy": "1"
       }
@@ -6910,7 +6976,8 @@
     "path-is-absolute": {
       "version": "1.0.1",
       "resolved": "https://registry.npmjs.org/path-is-absolute/-/path-is-absolute-1.0.1.tgz",
-      "integrity": "sha1-F0uSaHNVNP+8es5r9TpanhtcX18="
+      "integrity": "sha1-F0uSaHNVNP+8es5r9TpanhtcX18=",
+      "dev": true
     },
     "path-is-inside": {
       "version": "1.0.2",
@@ -7062,14 +7129,6 @@
       "resolved": "https://registry.npmjs.org/progress/-/progress-2.0.3.tgz",
       "integrity": "sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==",
       "dev": true
-    },
-    "promise-filter": {
-      "version": "1.1.0",
-      "resolved": "https://registry.npmjs.org/promise-filter/-/promise-filter-1.1.0.tgz",
-      "integrity": "sha1-fsPOmQyGfMud6GONvRnuF6UqS1k=",
-      "requires": {
-        "any-promise": "^0.1.0"
-      }
     },
     "promise-to-callback": {
       "version": "1.0.0",
@@ -7357,14 +7416,6 @@
       "requires": {
         "exit-hook": "^1.0.0",
         "onetime": "^1.0.0"
-      }
-    },
-    "resumer": {
-      "version": "0.0.0",
-      "resolved": "https://registry.npmjs.org/resumer/-/resumer-0.0.0.tgz",
-      "integrity": "sha1-8ej0YeQGS6Oegq883CqMiT0HZ1k=",
-      "requires": {
-        "through": "~2.3.4"
       }
     },
     "ret": {
@@ -8062,36 +8113,6 @@
       "integrity": "sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==",
       "dev": true
     },
-    "tape": {
-      "version": "4.11.0",
-      "resolved": "https://registry.npmjs.org/tape/-/tape-4.11.0.tgz",
-      "integrity": "sha512-yixvDMX7q7JIs/omJSzSZrqulOV51EC9dK8dM0TzImTIkHWfe2/kFyL5v+d9C+SrCMaICk59ujsqFAVidDqDaA==",
-      "requires": {
-        "deep-equal": "~1.0.1",
-        "defined": "~1.0.0",
-        "for-each": "~0.3.3",
-        "function-bind": "~1.1.1",
-        "glob": "~7.1.4",
-        "has": "~1.0.3",
-        "inherits": "~2.0.4",
-        "minimist": "~1.2.0",
-        "object-inspect": "~1.6.0",
-        "resolve": "~1.11.1",
-        "resumer": "~0.0.0",
-        "string.prototype.trim": "~1.1.2",
-        "through": "~2.3.8"
-      },
-      "dependencies": {
-        "resolve": {
-          "version": "1.11.1",
-          "resolved": "https://registry.npmjs.org/resolve/-/resolve-1.11.1.tgz",
-          "integrity": "sha512-vIpgF6wfuJOZI7KKKSP+HmiKggadPQAdsp5HiC1mvqnfp0gF1vdwgBWZIdrVft9pgqoMFQN+R7BSWZiBxx+BBw==",
-          "requires": {
-            "path-parse": "^1.0.6"
-          }
-        }
-      }
-    },
     "test-exclude": {
       "version": "5.2.3",
       "resolved": "https://registry.npmjs.org/test-exclude/-/test-exclude-5.2.3.tgz",
@@ -8109,11 +8130,6 @@
       "resolved": "https://registry.npmjs.org/throat/-/throat-4.1.0.tgz",
       "integrity": "sha1-iQN8vJLFarGJJua6TLsgDhVnKmo=",
       "dev": true
-    },
-    "through": {
-      "version": "2.3.8",
-      "resolved": "https://registry.npmjs.org/through/-/through-2.3.8.tgz",
-      "integrity": "sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU="
     },
     "through2": {
       "version": "2.0.5",
@@ -8768,7 +8784,8 @@
     "wrappy": {
       "version": "1.0.2",
       "resolved": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz",
-      "integrity": "sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8="
+      "integrity": "sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=",
+      "dev": true
     },
     "write-file-atomic": {
       "version": "2.4.1",
